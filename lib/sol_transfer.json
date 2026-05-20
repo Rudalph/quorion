@@ -1,0 +1,36 @@
+{
+  "address": "Bq4smtjAymfow7ptoyBwwCW4kKV2hpCwX8HZNCWMWmjX",
+  "version": "0.1.0",
+  "name": "sol_transfer",
+  "metadata": {
+    "address": "Bq4smtjAymfow7ptoyBwwCW4kKV2hpCwX8HZNCWMWmjX"
+  },
+  "instructions": [
+    {
+      "name": "transferSol",
+      "accounts": [
+        {
+          "name": "sender",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "receiver",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    }
+  ]
+}
