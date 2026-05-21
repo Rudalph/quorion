@@ -36,31 +36,47 @@ export async function POST(req) {
 
         console.log("Keys for selected algorithms:", filteredKeys);
 
-        // Iterate over the map of keys and sign based on the algorithm
         const signatures = {};
+        // Data structure to store signing details for verification
+        const signingLogs = [];
+
+        // Iterate over the map of keys and sign based on the algorithm
         for (const [algo, keys] of Object.entries(filteredKeys)) {
           try {
-            if (algo === "secp256k1") {
+            let signature = null;
+
+            if (algo === "ECDSA (secp256k1)") {
               // ECDSA (secp256k1) Signing
               const keyPair = ec.keyFromPrivate(keys.privateKey);
-              const signature = keyPair.sign(message).toDER('hex');
-              signatures[algo] = signature;
+              signature = keyPair.sign(message).toDER('hex');
               console.log(`Signed with secp256k1: ${signature}`);
             } 
             else if (algo === "Algorithm1") {
               // Placeholder for Ed25519 (EdDSA)
-              signatures[algo] = "SIGNATURE_PLACEHOLDER_ED25519";
+              signature = "SIGNATURE_PLACEHOLDER_ED25519";
               console.log(`Placeholder sign for ${algo}`);
             }
             else if (algo === "Algorithm3") {
               // Placeholder for Schnorr
-              signatures[algo] = "SIGNATURE_PLACEHOLDER_SCHS";
+              signature = "SIGNATURE_PLACEHOLDER_SCHS";
               console.log(`Placeholder sign for ${algo}`);
             }
             else {
               // Placeholder for any other algorithm
-              signatures[algo] = "SIGNATURE_PLACEHOLDER_GENERIC";
+              signature = "SIGNATURE_PLACEHOLDER_GENERIC";
               console.log(`Placeholder sign for unknown algo: ${algo}`);
+            }
+
+            if (signature) {
+              signatures[algo] = signature;
+              
+              // Store details for verification
+              signingLogs.push({
+                digitalSignature: signature,
+                originalMessage: message,
+                publicKey: keys.publicKey,
+                algorithmUsed: algo
+              });
             }
           } catch (signError) {
             console.error(`Error signing with ${algo}:`, signError);
@@ -68,10 +84,31 @@ export async function POST(req) {
           }
         }
 
+        console.log("Verification Data Structure:", JSON.stringify(signingLogs, null, 2));
+
+        let verificationResults = null;
+        try {
+          // Send the verification data to the sign-verification API
+          const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+          const verifyRes = await fetch(`${baseUrl}/api/sign-verification`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ verificationData: signingLogs }),
+          });
+          
+          if (verifyRes.ok) {
+            const verifyData = await verifyRes.json();
+            verificationResults = verifyData.validityResults;
+          }
+        } catch (verifyError) {
+          console.error("Error sending data to sign-verification API:", verifyError);
+        }
+
         return NextResponse.json({ 
           success: true, 
           receivedMessage: message,
-          signatures: signatures
+          signatures: signatures,
+          verification: verificationResults
         });
 
       } else {
