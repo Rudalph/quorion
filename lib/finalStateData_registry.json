@@ -1,0 +1,119 @@
+{
+  "address": "GswtVwhtr88FwZnv84S1uK7HJ1DBNamqczKRS7juEYWt",
+  "version": "0.1.0",
+  "name": "final_state_registry",
+  "metadata": {
+    "address": "GswtVwhtr88FwZnv84S1uK7HJ1DBNamqczKRS7juEYWt"
+  },
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "registry",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "saveFinalState",
+      "accounts": [
+        {
+          "name": "registry",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "items",
+          "type": {
+            "vec": {
+              "defined": "FinalStateItem"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "FinalStateRegistry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "updatedAt",
+            "type": "i64"
+          },
+          {
+            "name": "items",
+            "type": {
+              "vec": {
+                "defined": "FinalStateItem"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "FinalStateItem",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "riskScore",
+            "type": "u8"
+          },
+          {
+            "name": "isDeprecated",
+            "type": "bool"
+          },
+          {
+            "name": "isDefault",
+            "type": "bool"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "You are not authorized to update this registry"
+    }
+  ]
+}
