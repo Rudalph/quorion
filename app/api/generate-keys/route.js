@@ -25,7 +25,7 @@ export async function POST(req) {
     // ECDSA
     // ======================================================
     if (value === "ECDSA (secp256k1)") {
-      const priv = secp.utils.randomSecretKey();
+      const priv = secp.utils.randomPrivateKey();
       const pub = secp.getPublicKey(priv);
 
       publicKey = Buffer.from(pub).toString("hex");
@@ -36,7 +36,7 @@ export async function POST(req) {
     // SCHNORR
     // ======================================================
     else if (value === "Schnorr (secp256k1)") {
-      const priv = secp.utils.randomSecretKey();
+      const priv = secp.utils.randomPrivateKey();
       const pub = secp.schnorr.getPublicKey(priv);
 
       publicKey = Buffer.from(pub).toString("hex");

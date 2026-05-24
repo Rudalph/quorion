@@ -18,7 +18,7 @@ export default function Page() {
   const wallet = useWallet();
 
   const { options1, loading } = useRegistry();
-  console.log("Registry Options:", options1);
+  // console.log("Registry Options:", options1);
 
   const handleGenerateKey = async (option) => {
     console.log("Selected:", option);

@@ -139,6 +139,8 @@ export default function TransactPage() {
       console.log("Transaction Message:", messageString);
       console.log("Transaction Message Hash:", messageHash);
 
+      let statusArray = [];
+
       try {
         const res =await fetch("/api/signing-message", {
           method: "POST",
@@ -153,7 +155,7 @@ export default function TransactPage() {
         const data = await res.json();
         console.log("Signatures:", data.signatures);
         console.log("Verification:", data.verification);
-        const statusArray = Object.values(data.verification).map(v => v.status.toLowerCase());
+        statusArray = Object.values(data.verification).map(v => v.status.toLowerCase());
         console.log("Statuses:", statusArray);
       } catch (apiError) {
         console.error("Error calling signing-message API:", apiError);
@@ -164,7 +166,7 @@ export default function TransactPage() {
         ownerPublicKey: wallet.publicKey,
         receiverAddress: receiver,
         amountSol: transferAmount,
-        verificationResults: statuses,
+        verificationResults: statusArray,
       });
 
       setSignature(tx);
