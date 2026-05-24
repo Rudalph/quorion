@@ -12,7 +12,7 @@
     "@coral-xyz/anchor": "^0.29.0",
     "@noble/curves": "^2.2.0",
     "@noble/post-quantum": "^0.6.1",
-    "@noble/secp256k1": "^1.7.1",
+    "@noble/secp256k1": "^1.6.3",
     "@oqs/liboqs-js": "github:open-quantum-safe/liboqs-js",
     "@solana/client": "^1.7.0",
     "@solana/kit": "^6.9.0",

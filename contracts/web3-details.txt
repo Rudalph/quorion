@@ -5,3 +5,7 @@ Deployed Contract Signature: 4YQmuqnKFjRLZFvqKeBxJsLkTrWioJrFpiS7yAeZvCXDJqZ3HvS
 Admin Registry Smart Contract Details:
 Program ID: GswtVwhtr88FwZnv84S1uK7HJ1DBNamqczKRS7juEYWt
 Deployed Contract Signature: 5YKUqbzWNmhNcgC1MZZBWtSTtRzkKAtMaQEyYXo8DVo27xz7SMFJU1d2Z3VN5GLDTZCKNFk8R5gHipFpRk4CkQyN
+
+Valut Smart Contract Details:
+Program ID: HYMteAnf2z3BmBMEQDDiukeq5pL2T73yimf35JjjuWWJ
+Deployed Contract Signature: 258e3x9DUiBceQLE23J3F5xEAmUSwR1yd6tK7oQaUY8ZuJirHHcce2ZxfsYuz2HQEhrBwVKWXFvaTjcuXmXALXoW
