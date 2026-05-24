@@ -1,5 +1,251 @@
 @import "tailwindcss";
 
-body {
-  background-color: #30364F;
+html {
+  scroll-behavior: smooth;
 }
+
+body {
+  background-color: #070A12;
+  color: #F0F0DB;
+}
+
+.font-heading {
+  font-family: var(--font-space-grotesk);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #F0F0DB 0%, #8B5CF6 50%, #2DD4BF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Button ─────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+  color: #fff;
+  padding: 16px 44px;
+  border-radius: 14px;
+  font-family: var(--font-space-grotesk);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 28px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Shine sweep on hover */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.45s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 60px rgba(124, 58, 237, 0.55), 0 0 0 1px rgba(139, 92, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, #6D28D9 0%, #4338CA 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 36px;
+  border-radius: 14px;
+  font-family: var(--font-space-grotesk);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-body);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #F0F0DB;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 36px;
+  border-radius: 14px;
+  font-family: var(--font-space-grotesk);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-body);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #F0F0DB;
+  transform: translateY(-2px);
+}
+
+/* ─── Cards ──────────────────────────────────────────── */
+
+/* Text colour scale — slightly brighter than default slate */
+:root {
+  --text-primary:   #F0F0DB;
+  --text-body:      #ACBAC4;
+  --text-muted:     #8899A8;
+  --text-faint:     #64748B;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+}
+
+/* Cards in a grid that respond as a group on hover */
+.card-hoverable {
+  transition: transform 0.26s ease, box-shadow 0.26s ease, opacity 0.26s ease;
+  will-change: transform;
+}
+
+.card-hoverable:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 56px rgba(139, 92, 246, 0.18);
+  z-index: 1;
+  position: relative;
+}
+
+/* Surrounding cards in the same grid dim when a sibling is hovered */
+.grid-interactive:has(.card-hoverable:hover) .card-hoverable:not(:hover) {
+  opacity: 0.65;
+  transform: scale(0.98);
+}
+
+/* ─── Misc UI ─────────────────────────────────────────── */
+
+.section-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8B5CF6;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.2),
+    rgba(45, 212, 191, 0.15),
+    transparent
+  );
+}
+
+.pqc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2DD4BF;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.22);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* ─── Hero layout ───────────────────────────────────── */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 72px;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .hero-grid .hero-card {
+    max-width: 440px;
+  }
+}
+
+/* ─── Algorithm grid responsive ─────────────────────── */
+
+@media (max-width: 860px) {
+  .algo-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .algo-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─── Animations ─────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.animate-hero-1 { animation: fadeInUp 0.8s ease both 0.05s; }
+.animate-hero-2 { animation: fadeInUp 0.8s ease both 0.2s; }
+.animate-hero-3 { animation: fadeInUp 0.8s ease both 0.35s; }
+.animate-hero-4 { animation: fadeInUp 0.8s ease both 0.5s; }
+.animate-hero-5 { animation: fadeInUp 0.8s ease both 0.65s; }
