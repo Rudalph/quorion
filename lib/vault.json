@@ -1,0 +1,129 @@
+{
+  "address": "HYMteAnf2z3BmBMEQDDiukeq5pL2T73yimf35JjjuWWJ",
+  "version": "0.1.0",
+  "name": "crypto_agile_vault",
+  "metadata": {
+    "address": "HYMteAnf2z3BmBMEQDDiukeq5pL2T73yimf35JjjuWWJ"
+  },
+  "instructions": [
+    {
+      "name": "initializeVault",
+      "accounts": [
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deposit",
+      "accounts": [
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "transferFromVault",
+      "accounts": [
+        {
+          "name": "vault",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "receiver",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        },
+        {
+          "name": "verificationResults",
+          "type": {
+            "vec": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Vault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NoVerificationProvided",
+      "msg": "No verification results provided"
+    },
+    {
+      "code": 6001,
+      "name": "InvalidVerification",
+      "msg": "One or more algorithm signatures are invalid"
+    },
+    {
+      "code": 6002,
+      "name": "Unauthorized",
+      "msg": "Only the vault owner can transfer funds"
+    },
+    {
+      "code": 6003,
+      "name": "InsufficientFunds",
+      "msg": "Vault does not have enough SOL"
+    }
+  ]
+}

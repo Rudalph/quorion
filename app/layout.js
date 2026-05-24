@@ -1,10 +1,10 @@
-import { Mulish } from "next/font/google";
+import { Jura } from "next/font/google";
 import "./globals.css";
 
 import WalletContextProvider from "../context/SolanaProvider";
 
-const mulish = Mulish({
-  variable: "--font-mulish",
+const mulish = Jura({
+  variable: "--font-jura",
   subsets: ["latin"],
 });
 
