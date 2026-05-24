@@ -25,7 +25,7 @@ export async function POST(req) {
     // ECDSA
     // ======================================================
     if (value === "ECDSA (secp256k1)") {
-      const priv = secp.utils.randomSecretKey();
+      const priv = secp.utils.randomPrivateKey();
       const pub = secp.getPublicKey(priv);
 
       publicKey = Buffer.from(pub).toString("hex");
@@ -36,7 +36,7 @@ export async function POST(req) {
     // SCHNORR
     // ======================================================
     else if (value === "Schnorr (secp256k1)") {
-      const priv = secp.utils.randomSecretKey();
+      const priv = secp.utils.randomPrivateKey();
       const pub = secp.schnorr.getPublicKey(priv);
 
       publicKey = Buffer.from(pub).toString("hex");
@@ -94,14 +94,16 @@ export async function POST(req) {
       try {
         console.log("Calling PQC backend...");
 
-        const response = await fetch(
-          "http://localhost:8000/generate-keys",
+        const pythonApiUrl = process.env.PYTHON_API_URL || "http://localhost:8000";
+          const response = await fetch(
+            `${pythonApiUrl}/generate-keys`,
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
+            body: JSON.stringify
+            ({
               algorithm: value,
             }),
           }
