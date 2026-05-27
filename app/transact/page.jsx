@@ -411,11 +411,24 @@ export default function TransactPage() {
   }
   async function handleViewVaultBalance() {
     try {
-      if (!wallet.publicKey) { alert("Connect wallet first"); return; }
-      const { vaultPda, balanceSol } = await getVaultBalance({ connection, ownerPublicKey: wallet.publicKey });
-      setVaultAddress(vaultPda.toBase58()); setVaultBalance(balanceSol);
-    } catch (e) { console.error(e); alert("Failed to fetch vault balance"); }
-  }
+      if (!wallet.publicKey) {
+        alert("Connect wallet first");
+        return;
+      }
+
+      const { vaultPda, balanceSol } = await getVaultBalance({
+        connection,
+        ownerPublicKey: wallet.publicKey,
+      });
+
+      setVaultAddress(vaultPda.toBase58());
+      setVaultBalance(balanceSol);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to fetch vault balance");
+    }
+  } 
+
   async function handleDeposit() {
     try {
       if (!program || !wallet.publicKey) { alert("Connect wallet first"); return; }

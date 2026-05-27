@@ -142,7 +142,7 @@ export default function Hero() {
 
           {/* CTA */}
           <div className="animate-hero-4" style={{ marginTop: "40px" }}>
-            <Link href="/transactions" className="btn-primary" style={{ display: "inline-flex" }}>
+            <Link href="/transact" className="btn-primary" style={{ display: "inline-flex" }}>
               Get Started
             </Link>
             <p

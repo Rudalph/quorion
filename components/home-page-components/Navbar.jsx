@@ -78,7 +78,7 @@ export default function Navbar() {
         </Link>
 
         <Link
-          href="/transactions"
+          href="/transact"
           className="btn-primary"
           style={{ padding: "10px 22px", fontSize: "14px" }}
         >
